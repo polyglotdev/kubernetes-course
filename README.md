@@ -19,26 +19,26 @@ metadata:
     app.kubernetes.io/instance: grade-submission-portal
 spec:
   containers:
-  - name: grade-submission-portal
-    image: rslim087/kubernetes-course-grade-submission-portal
-    resources:
-      requests:
-        memory: 128Mi
-        cpu: 200m
-      limits:
-        memory: 128Mi
-        cpu: 200m
-    ports:
-      - containerPort: 5001  
-  - name: grade-submission-portal-health-checker
-    image: rslim087/kubernetes-course-grade-submission-portal-health-checker
-    resources:
-      requests:
-        memory: 128Mi
-        cpu: 200m
-      limits:
-        memory: 128Mi
-        cpu: 200m
+    - name: grade-submission-portal
+      image: rslim087/kubernetes-course-grade-submission-portal
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 200m
+        limits:
+          memory: 128Mi
+          cpu: 200m
+      ports:
+        - containerPort: 5001
+    - name: grade-submission-portal-health-checker
+      image: rslim087/kubernetes-course-grade-submission-portal-health-checker
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 200m
+        limits:
+          memory: 128Mi
+          cpu: 200m
 ```
 
 - `apiVersion`: The version of the Kubernetes API that we are using.
@@ -54,7 +54,7 @@ spec:
     - `name`: The name of the container.
     - `image`: The image that we are using for the container.
     - `resources`: The resources that we are requesting for the container.
-      - `requests`: The minimum resources that we are requesting for the container.
+      - `requests`: The minimum resources that we need for the container to run.
       - `limits`: The maximum resources that we are allowing for the container.
 
 First, we define the metadata for the object; then we define the specification for the object. There is a one-to-one relationship between the pod and containerized microservice application within it.
@@ -62,3 +62,23 @@ First, we define the metadata for the object; then we define the specification f
 We label the pod to distinguish it from other pods in the cluster as well so that we group into distinct groups.
 
 > 💡 We should in the within the labels prefix the label with `app.kubernetes.io/` to avoid conflicts in third-party labels.
+
+Memory is **the workspace where a computer stores and retrieves data for immediate use**. CPU is **the compute that performs calculations and executes instructions**.
+
+You can throttle compute, but you cannot throttle data. So that makes CPU a compressible resource. Therefore memory is an incompressible resource. Without a limit of how much memory the pod can use, it will use all of the memory on the node. And if other containers do the same, it will cause the node to run out of memory. Pods would just start dying off.
+
+We normally don't want to place a limit on the CPU. Rememmber that CPU is a compressible resource. So if the node happens to have some extra CPU we would want the application to use it.
+
+> 🎮 A tip for when you want to understand what a field in the YAML means is to use the `kubectl explain` command.
+
+```bash
+kubectl explain pods.spec.containers
+```
+
+You can literally just follow the path of the field in the YAML file and it will explain it to you. Starting with what sort of resource it is. To bring up a table with all the resources, you can use
+
+```bash
+k api-resources
+```
+
+> At some point you will get nit-picked about the code you write and one of those spots will probably be limits. You don't want the containers to exceed the inital limit that they are allocated. So in `limits` set the memory to exactly what the `resources.requests.memory` is. The reason that we don't often set a limit on the CPU is because the kernels scheduler will automatically throttle to just use the amount of CPU defined in `resources.requests.cpu`.

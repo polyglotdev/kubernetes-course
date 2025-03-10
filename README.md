@@ -46,6 +46,9 @@ spec:
 - `metadata`: The metadata for the object.
   - `name`: The name of the object.
   - `labels`: The labels for the object.
+    - `app.kubernetes.io/name`: The name of the application.
+    - `app.kubernetes.io/component`: The component of the application.
+    - `app.kubernetes.io/instance`: The instance of the application.
 - `spec`: The specification for the object.
   - `containers`: The containers that make up the object.
     - `name`: The name of the container.

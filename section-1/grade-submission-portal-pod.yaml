@@ -16,7 +16,7 @@ spec:
         cpu: 200m
       limits:
         memory: 128Mi
-        cpu: 500m
+        cpu: 200m
     ports:
       - containerPort: 5001  
   - name: grade-submission-portal-health-checker
@@ -27,4 +27,4 @@ spec:
         cpu: 200m
       limits:
         memory: 128Mi
-        cpu: 500m
+        cpu: 200m

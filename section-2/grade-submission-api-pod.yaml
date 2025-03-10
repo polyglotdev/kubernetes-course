@@ -10,6 +10,9 @@ spec:
   containers:
     - name: grade-submission-api
       image: rslim087/kubernetes-course-grade-submission-api:stateless
+      env:
+        - name: GRADE_SERVICE_HOST
+          value: "grade-submission-api"
       resources:
         requests:
           memory: 128Mi

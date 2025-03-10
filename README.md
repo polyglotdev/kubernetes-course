@@ -185,3 +185,51 @@ kru='kubectl rollout undo'
 ksd='kubectl scale deployment'
 ksss='kubectl scale statefulset'
 ```
+
+## Section 7 Key Takeaways
+
+> Service Primitive in K8s abstracts away network complexity and provides a durable endpoint for accessing pods.
+
+### Node Port Service
+
+Allows external access to K8s network by exposing static port on node(range: 30000-32000)
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grade-submission-api
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/instance: grade-submission-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32000
+```
+
+- external request is initiated on the node's static port(nodePort: 32000)
+- The request enters the cluseter thru the Service's internal port(port: 8080). With nodePort services, this internal port can be any valid port number, as the external nodePort will be mapped to whatever internal port is specified
+- The service specifies a target port (targetPort: 8080) that ensures the request reaches the container port on the pod.
+- The NodePort service is often used when prototyping, rarely in practice.
+
+### ClusterIP Service
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+```
+
+- Pods within the cluster can access the service using its name (backend-service) and service's internal port (port: 8080).
+- The service acts as a proxy by directing the request to a matching pod using a label selector.
+- The service specifies a target port (targetPort: 8080) that ensures the request reaches the container port on the pod.

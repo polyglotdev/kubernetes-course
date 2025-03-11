@@ -67,7 +67,7 @@ Memory is **the workspace where a computer stores and retrieves data for immedia
 
 You can throttle compute, but you cannot throttle data. So that makes CPU a compressible resource. Therefore memory is an incompressible resource. Without a limit of how much memory the pod can use, it will use all of the memory on the node. And if other containers do the same, it will cause the node to run out of memory. Pods would just start dying off.
 
-We normally don't want to place a limit on the CPU. Rememmber that CPU is a compressible resource. So if the node happens to have some extra CPU we would want the application to use it.
+We normally don't want to place a limit on the CPU. Remember that CPU is a compressible resource. So if the node happens to have some extra CPU we would want the application to use it.
 
 > 🎮 A tip for when you want to understand what a field in the YAML means is to use the `kubectl explain` command.
 
@@ -81,7 +81,7 @@ You can literally just follow the path of the field in the YAML file and it will
 k api-resources
 ```
 
-> At some point you will get nit-picked about the code you write and one of those spots will probably be limits. You don't want the containers to exceed the inital limit that they are allocated. So in `limits` set the memory to exactly what the `resources.requests.memory` is. The reason that we don't often set a limit on the CPU is because the kernels scheduler will automatically throttle to just use the amount of CPU defined in `resources.requests.cpu`. So when someone complains about your PR, just shoot them [this](https://kubernetes.io/docs/setup/production-environment/container-runtimes), because that's right from Kubernetes creators.
+> At some point you will get nit-picked about the code you write and one of those spots will probably be limits. You don't want the containers to exceed the initial limit that they are allocated. So in `limits` set the memory to exactly what the `resources.requests.memory` is. The reason that we don't often set a limit on the CPU is because the kernels scheduler will automatically throttle to just use the amount of CPU defined in `resources.requests.cpu`. So when someone complains about your PR, just shoot them [this](https://kubernetes.io/docs/setup/production-environment/container-runtimes), because that's right from Kubernetes creators.
 
 ## Alias for K8s
 

@@ -1,4 +1,4 @@
-# Kubernetes Coure
+# Kubernetes Course
 
 [Course Link](https://www.udemy.com/course/kubernetes-bootcamp-kubernetes-from-zero-to-cloud/)
 
@@ -210,7 +210,7 @@ spec:
 ```
 
 - external request is initiated on the node's static port(nodePort: 32000)
-- The request enters the cluseter thru the Service's internal port(port: 8080). With nodePort services, this internal port can be any valid port number, as the external nodePort will be mapped to whatever internal port is specified
+- The request enters the cluster thru the Service's internal port(port: 8080). With nodePort services, this internal port can be any valid port number, as the external nodePort will be mapped to whatever internal port is specified
 - The service specifies a target port (targetPort: 8080) that ensures the request reaches the container port on the pod.
 - The NodePort service is often used when prototyping, rarely in practice.
 
@@ -233,3 +233,40 @@ spec:
 - Pods within the cluster can access the service using its name (backend-service) and service's internal port (port: 8080).
 - The service acts as a proxy by directing the request to a matching pod using a label selector.
 - The service specifies a target port (targetPort: 8080) that ensures the request reaches the container port on the pod.
+
+## The Kubernetes Cluster
+
+### Master Node
+
+- **API Server**: The API server is the front-end for the Kubernetes control plane. It exposes the Kubernetes API.
+- **Controller Manager**: The controller manager is a daemon that embeds the core control loops shipped with Kubernetes. Each controller tries to move the cluster state closer to the desired state.
+- **Scheduler**: The scheduler watches for newly created pods with no assigned node, and selects a node for them to run on.
+- **etcd**: etcd is a consistent and highly-available key value store used as Kubernetes' backing store for all cluster data.
+- **Cloud Controller Manager**: The cloud controller manager lets you link your cluster into your cloud provider's API. It separates components that interact with the cloud platform from components that just interact with your cluster.
+
+### Worker Node
+
+- **Kubelet**: The kubelet is an agent that runs on each worker node in the cluster. It makes sure that containers are running in a Pod.
+- **Kube Proxy**: Kube-proxy is a network proxy that runs on each node in your cluster, implementing part of the Kubernetes Service concept.
+- **Container Runtime**: The container runtime is the software that is responsible for running containers. Examples include Docker, containerd, and CRI-O.
+- **Pods**: A Pod is the basic deployable unit in Kubernetes. It represents a single instance of a running process in your cluster.
+- **Containers**: Containers are the actual applications that run inside the pods. They are isolated from each other and share the same network namespace.
+- **Volumes**: Volumes are used to persist data in Kubernetes. They provide a way for containers to share data and for data to survive container restarts.
+- **Namespaces**: Namespaces are a way to divide cluster resources between multiple users. They provide a scope for names, allowing for resource isolation and organization.
+- **Network**: The network in Kubernetes allows communication between pods, services, and external clients. It provides a way for pods to discover and communicate with each other.
+- **Storage**: Storage in Kubernetes provides a way to persist data beyond the lifecycle of a pod. It includes persistent volumes, persistent volume claims, and storage classes.
+- **Secrets and ConfigMaps**: Secrets and ConfigMaps are used to store sensitive information and configuration data, respectively. They provide a way to decouple configuration from application code.
+- **Ingress**: Ingress is a collection of rules that allow inbound connections to reach the cluster services. It provides HTTP and HTTPS routing to services based on host and path.
+- **Service Accounts**: Service accounts are used to provide an identity for processes that run in a pod. They are used to authenticate to the Kubernetes API and other services.
+- **Network Policies**: Network policies are used to control the traffic flow between pods. They provide a way to define rules for ingress and egress traffic.
+- **Horizontal Pod Autoscaler**: The Horizontal Pod Autoscaler automatically scales the number of pods in a deployment, replica set, or stateful set based on observed CPU utilization or other select metrics.
+- **Vertical Pod Autoscaler**: The Vertical Pod Autoscaler automatically adjusts the CPU and memory requests and limits for containers in a pod based on usage.
+- **Custom Resource Definitions (CRDs)**: CRDs allow you to extend Kubernetes with your own API objects. They provide a way to define custom resources and controllers.
+- **Operators**: Operators are a method of packaging, deploying, and managing a Kubernetes application. They use custom resources to manage applications and their components.
+- **Admission Controllers**: Admission controllers are plugins that govern and enforce how the cluster is used. They can modify or reject requests to the Kubernetes API server.
+- **Metrics Server**: The metrics server is a cluster-wide aggregator of resource usage data. It collects metrics from the kubelet and exposes them via the Kubernetes API.
+- **Logging and Monitoring**: Logging and monitoring are essential for observing the health and performance of your Kubernetes cluster. They provide insights into the behavior of your applications and infrastructure.
+- **Service Mesh**: A service mesh is a dedicated infrastructure layer that controls service-to-service communication over a network. It provides features like traffic management, security, and observability.
+- **Federation**: Federation allows you to manage multiple Kubernetes clusters as a single entity. It provides a way to deploy applications across clusters and manage resources at scale.
+- **Backup and Disaster Recovery**: Backup and disaster recovery solutions are essential for protecting your data and applications in case of failures or disasters. They provide a way to restore your cluster to a previous state.
+- **Security**: Security is a critical aspect of Kubernetes. It includes authentication, authorization, encryption, and network security to protect your cluster and applications.

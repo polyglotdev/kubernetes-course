@@ -7,8 +7,8 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: mongodb
-  serviceName: mongodb
-  replicas: 2
+  serviceName: mongodb    ## mongodb-0 mongodb-1
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,9 +21,9 @@ spec:
         image: mongo:4.4
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
-            value: "admin"
+            value: admin
           - name: MONGO_INITDB_ROOT_PASSWORD
-            value: "password123"
+            value: password123
         ports:
         - containerPort: 27017
         volumeMounts:
@@ -33,7 +33,7 @@ spec:
   - metadata:
       name: mongodb-persistent-storage
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: [ ReadWriteOnce ]
       resources:
         requests:
           storage: 1Gi

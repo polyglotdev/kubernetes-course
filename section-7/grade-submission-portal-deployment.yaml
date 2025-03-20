@@ -28,7 +28,7 @@ spec:
           httpGet:
             path: /readyz
             port: 5001
-          periodSeconds: 10
+          periodSeconds: 5
         env:
           - name: GRADE_SERVICE_HOST
             value: grade-submission-api

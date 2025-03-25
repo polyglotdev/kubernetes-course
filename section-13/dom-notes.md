@@ -16,7 +16,7 @@ Imagine you have a band of musicians(containers) each playing their own piece of
 - Provides Load Balancing: It routes traffic to the right container, ensuring that requests are handled smoothly-- no one is stuck in lobby waiting to get into the auditorium.
 - Simplifies Rollouts and Rollbacks: Need to update the application? Kubernetes can deploy new versions incrementally and revert if something goes sideways, keeping your performance in check.
 
-> 🧠 Going forward we will use K8s as a abreviation for the word Kubernetes.
+> 🧠 Going forward we will use K8s as a abbreviation for the word Kubernetes.
 
 ## Kubernetes Architecture
 
@@ -25,7 +25,7 @@ Imagine you have a band of musicians(containers) each playing their own piece of
 This is the brain of the cluster. Its where decisions are made and the state of your entire cluster is managed.
 
 - API Sever: Acts like the entry point for K8s. Its a RESTful interface through which you and other components communicate with the cluster. Every request -- be it from the CLI, a Dashboard, or a custom application -- goes through the API server. Imagine this as the stage manager for the band.
-- etcd: A lightweigh key-value store that holds the entire state of the cluster. Think of this as the memory-bank for the band that records all actions/interactions between the conductor and the musicians. etcd is the relaible historian.
+- etcd: A lightweight key-value store that holds the entire state of the cluster. Think of this as the memory-bank for the band that records all actions/interactions between the conductor and the musicians. etcd is the reliable historian.
 - Scheduler: Decides which node should run which container. It's like the conductor who assigns the right musicians to the right instrument.
 - Controller Manager: Runs a bunch og controllers that watch the state of your cluster. Its the stage crew that ensures that the set up of chairs and stands are correct and is constantly monitoring to ensure that the stage is in the desired state.
 
@@ -42,8 +42,8 @@ These are the workhorses where your containers actually run. Every worker node r
 - **pods**: The smallest deployable unit in K8s which can host one or more containers that share the same context (networking, storage, etc).
 - **services**: abstract a set of pods and provide a stable network endpoint. Services ensure that even if your pods come and go, clients can still reliably access the application. Its like having a permanent marquee outside the auditorium that always points to the current show.
 - **Deployments**, **ReplicaSets** and **StatefulSets**: These are higher-level constructs that manage the lifecycle of your pods. They handle things like scaling, rolling updates, and storage. Think of them as the conductor's score that guides the musicians through the piece. They are like the sound engineer that from the board can handle who is at what volume and lower and raise the volume so the product is always right where you want it.
-- **ConfigMaps** and **Secrets**: This is the band manager that handles all the logisitics for the band's pay and what not. They store all the sensitive information about the members as well as the set list. So we can update the set list and the band manager will ensure that the correct song is played.
-- **Volumes**: offer persistent storage that lives beyond the lifecycle of the containers. They ensure that data ins't lost when a container crashes--akin to habing a safe place where the band's priceless memorabillia is stored.
+- **ConfigMaps** and **Secrets**: This is the band manager that handles all the logistics for the band's pay and what not. They store all the sensitive information about the members as well as the set list. So we can update the set list and the band manager will ensure that the correct song is played.
+- **Volumes**: offer persistent storage that lives beyond the lifecycle of the containers. They ensure that data ins't lost when a container crashes--akin to having a safe place where the band's priceless memorabilia is stored.
 
 ## The Mechanics in Action
 

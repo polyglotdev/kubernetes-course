@@ -20,13 +20,17 @@ spec:
           db: grades
       scramCredentialsSecretName: mongodb-grade-submission
 
-  # statefulSet:
-  #   spec:
-  #     template:
-  #       # Adds a custom volume to the pods
-  #       spec:
-  #         containers:
-  #         - name: mongodb-agent
-  #           volumeMounts:
-  #             - name: custom-volume
-  #               mountPath: /my-custom-version/mount-path
+  statefulSet:
+    spec:
+      template:
+        # Adds a custom volume to the pods
+        spec:
+          containers:
+          - name: mongodb-agent
+            image: "quay.io/mongodb/mongodb-agent-ubi:12.0.32.7857-1"
+            volumeMounts:
+              - name: custom-volume
+                mountPath: /my-custom-version/mount-path
+          volumes:
+          - name: custom-volume
+            emptyDir: {}

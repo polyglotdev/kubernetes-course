@@ -47,8 +47,8 @@ These are the workhorses where your containers actually run. Every worker node r
 
 ## The Mechanics in Action
 
-1. You send a request to the API server, which updates the etcd database.
-2. The scheduler then picks a node based on resource availability.
-3. kublet on the cosen node picks up the instructions, ensuring that the pod is created.
-4. kube-proxy sets up networking so your service can be accessed.
-5. Controllers continuously monitor the state, making sure that the actual state of the cluster matches the desired state--even if a container goes down unexpectedly.
+1. You send a request to the **API server**, which updates the etcd database.
+2. The **scheduler** then picks a node based on resource availability.
+3. **kublet** on the chosen node picks up the instructions, ensuring that the pod is created.
+4. **kube-proxy** sets up networking so your service can be accessed.
+5. **Controllers** continuously monitor the state, making sure that the actual state of the cluster matches the desired state--even if a container goes down unexpectedly.

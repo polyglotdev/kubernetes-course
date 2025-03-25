@@ -44,3 +44,11 @@ These are the workhorses where your containers actually run. Every worker node r
 - Deployments, ReplicaSets and StatefulSets: These are higher-level constructs that manage the lifecycle of your pods. They handle things like scaling, rolling updates, and storage. Think of them as the conductor's score that guides the musicians through the piece. They are like the sound engineer that from the board can handle who is at what volume and lower and raise the volume so the product is always right where you want it.
 - ConfigMaps and Secrets: This is the band manager that handles all the logisitics for the band's pay and what not. They store all the sensitive information about the members as well as the set list. So we can update the set list and the band manager will ensure that the correct song is played.
 - Volumes: offer persistent storage that lives beyond the lifecycle of the containers. They ensure that data ins't lost when a container crashes--akin to habing a safe place where the band's priceless memorabillia is stored.
+
+## The Mechanics in Action
+
+1. You send a request to the API server, which updates the etcd database.
+2. The scheduler then picks a node based on resource availability.
+3. kublet on the cosen node picks up the instructions, ensuring that the pod is created.
+4. kube-proxy sets up networking so your service can be accessed.
+5. Controllers continuously monitor the state, making sure that the actual state of the cluster matches the desired state--even if a container goes down unexpectedly.

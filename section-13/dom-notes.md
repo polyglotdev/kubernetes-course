@@ -24,18 +24,18 @@ Imagine you have a band of musicians(containers) each playing their own piece of
 
 This is the brain of the cluster. Its where decisions are made and the state of your entire cluster is managed.
 
-- API Sever: Acts like the entry point for K8s. Its a RESTful interface through which you and other components communicate with the cluster. Every request -- be it from the CLI, a Dashboard, or a custom application -- goes through the API server. Imagine this as the stage manager for the band.
-- etcd: A lightweight key-value store that holds the entire state of the cluster. Think of this as the memory-bank for the band that records all actions/interactions between the conductor and the musicians. etcd is the reliable historian.
-- Scheduler: Decides which node should run which container. It's like the conductor who assigns the right musicians to the right instrument.
-- Controller Manager: Runs a bunch og controllers that watch the state of your cluster. Its the stage crew that ensures that the set up of chairs and stands are correct and is constantly monitoring to ensure that the stage is in the desired state.
+- **API Sever**: Acts like the entry point for K8s. Its a RESTful interface through which you and other components communicate with the cluster. Every request -- be it from the CLI, a Dashboard, or a custom application -- goes through the API server. Imagine this as the stage manager for the band.
+- **etcd**: A lightweight key-value store that holds the entire state of the cluster. Think of this as the memory-bank for the band that records all actions/interactions between the conductor and the musicians. etcd is the reliable historian.
+- **Scheduler**: Decides which node should run which container. It's like the conductor who assigns the right musicians to the right instrument.
+- **Controller Manager**: Runs a bunch og controllers that watch the state of your cluster. Its the stage crew that ensures that the set up of chairs and stands are correct and is constantly monitoring to ensure that the stage is in the desired state.
 
 ### 2. The Node(worker) Components
 
 These are the workhorses where your containers actually run. Every worker node runs several key components:
 
-- Kubelet: An agent that runs on each node. It listens for instructions from the API server and ensures that the containers are running(encapsulated by a pod) in the desired state.
-- Kube-proxy: Maintains network rules on nodes, allowing communication between pods. Think of it as the traffic cop directing the flow of data in and out of the cluster.
-- Container Runtime: The software that runs the containers. It's like the engine that powers the containers. Think Docker or CRI-O.
+- **Kubelet**: An agent that runs on each node. It listens for instructions from the API server and ensures that the containers are running(encapsulated by a pod) in the desired state.
+- **Kube-proxy**: Maintains network rules on nodes, allowing communication between pods. Think of it as the traffic cop directing the flow of data in and out of the cluster.
+- **Container Runtime**: The software that runs the containers. It's like the engine that powers the containers. Think Docker or CRI-O.
 
 ### 3. Other Key Components
 
